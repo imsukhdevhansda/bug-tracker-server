@@ -1,15 +1,21 @@
 const express = require("express");
 require("dotenv").config();
 
-const 
+const {connection} = require("./Config/db")
+const {userRouter} = require("./Routes/user.route")
 
 
 const server = express();
 server.use(express.json());
 
 server.get("/", (req, res) => {
-  res.send({ msg: "Welcome to todo API" });
+  res.send({ msg: "Welcome to bug tracker API" });
 });
+
+server.use("/user",userRouter)
+
+
+
 
 
 
