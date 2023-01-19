@@ -1,23 +1,22 @@
 const express = require("express");
 require("dotenv").config();
+const cors = require("cors")
 
-const {connection} = require("./Config/db")
-const {userRouter} = require("./Routes/user.route")
-
+const connection= require("./Config/db");
+const userRouter = require("./Routes/user.router");
 
 const server = express();
+
+server.use(cors({origin:"*"}))
+
+
 server.use(express.json());
 
 server.get("/", (req, res) => {
   res.send({ msg: "Welcome to bug tracker API" });
 });
 
-server.use("/user",userRouter)
-
-
-
-
-
+server.use("/user", userRouter);
 
 server.listen(process.env.PORT, async () => {
   try {
